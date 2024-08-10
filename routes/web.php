@@ -25,7 +25,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'index')->name('index');
-    Route::get('/show-project/{id}', 'showProject')->name('showProject');
+    Route::get('/show-project/{project}', 'showProject')->name('showProject');
+    Route::post('/buy-project/{id}', 'buyProject')->name('buyProject');
+    Route::get('/payment-callback', 'paymentCallback')->name('paymentCallback');
     Route::get('/projects-category/{deparment}', 'category')->name('projectCategory');
 });
 

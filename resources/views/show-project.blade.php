@@ -3,30 +3,32 @@
     <section class="section" id="findJob">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-lg-7">
-                    <div class="text-center mb-5">
-                        <h1 class="mb-3 ff-secondary fw-semibold text-capitalize lh-base">Explore Innovative <span
-                                class="text-primary">Projects</span></h1>
-                        <p class="text-muted">Support the next generation of innovators and discover projects that are
-                            ready to make a lasting impact.</p>
+                <div class="col-lg-8">
+                    <form action="{{ route('buyProject', $project->id) }}" method="post">
+                        @csrf
+                        <div class="text-center mb-5">
+                            <h1 class="mb-3 ff-secondary fw-semibold text-capitalize lh-base">{{ $project->title }}</h1>
+                            <p class="text-muted">{!! $project->description !!}</p>
 
-                        <ul class="list-inline fs-bold mb-3">
-                            <li class="list-inline-item">
-                                <i class="ri-user-line align-bottom me-1"></i> BYAMUNGU Lewis
-                            </li>
-                            <li class="list-inline-item">
-                                <i class="ri-apps-2-line"></i> Civil Engeneering Departmnnt
-                            </li>
+                            <ul class="list-inline fs-bold mb-3">
+                                <li class="list-inline-item">
+                                    <i class="ri-user-line align-bottom me-1"></i> {{ $project->student->name }}
+                                </li>
+                                <li class="list-inline-item">
+                                    <i class="ri-apps-2-line"></i> {{ $project->department->name }}
+                                </li>
 
-                        </ul>
-                        <ul class="list-inline fs-bold mb-3">
-                            <span class="badge bg-success-subtle text-success me-2">200,000 Rwf</span>
+                            </ul>
+                            <ul class="list-inline fs-bold mb-3">
+                                <span class="badge bg-success-subtle text-success me-2">{{ number_format($project->price) }}
+                                    Rwf</span>
 
-                            <button class="btn btn-danger btn-sm"> Get it now</button>
+                                <button type="submit" class="btn btn-danger btn-sm"> Get it now</button>
 
-                        </ul>
+                            </ul>
 
-                    </div>
+                        </div>
+                    </form>
                 </div>
                 <!-- end col -->
             </div>

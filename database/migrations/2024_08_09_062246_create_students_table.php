@@ -26,6 +26,8 @@ return new class extends Migration
             $table->date('completion_date')->nullable();
             $table->string('profile_image')->nullable();
             $table->string('whatsapp_number')->nullable();
+            $table->string('call_number')->nullable();
+            $table->string('biography')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
