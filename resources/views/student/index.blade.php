@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.student.app')
 @section('body')
 <div class="row">
     <div class="col-12">
@@ -13,6 +13,6 @@
             </div>
 
         </div>
-    </div>Í
+    </div>
 </div>
 @endsection

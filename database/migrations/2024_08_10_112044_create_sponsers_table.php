@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('sponsers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('customer_id')->constrained()->restrictOnDelete();
-            $table->string('index')->unique();
-            $table->enum('status', ['pending', 'completed']);
-            $table->foreignId('user_id')->constrained()->restrictOnDelete();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('password');
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('sponsers');
     }
 };

@@ -19,7 +19,7 @@
     <!-- end page title -->
 
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card" id="userList">
                 <div class="card-header border-bottom-dashed">
 

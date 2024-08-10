@@ -47,11 +47,11 @@
                     <table class="table align-middle" id="studentTable" style="width: 100%">
                         <thead class="table-light text-muted">
                             <tr>
-                                <th scope="col" style="width: 20px;">#</th>
                                 <th class="sort" data-sort="student_name">Student</th>
-                                <th class="sort" data-sort="email">Email</th>
+                                <th class="sort" data-sort="email">Reg Number</th>
                                 <th class="sort" data-sort="phone">Phone</th>
-                                <th class="sort" data-sort="status">Status</th>
+                                <th class="sort" data-sort="department">Department</th>
+                                <th class="sort" data-sort="option">Option</th>
                                 <th class="sort" data-sort="date">Joining Date</th>
                                 <th class="sort" data-sort="action">Action</th>
                             </tr>
@@ -135,6 +135,14 @@
                                         <input type="text" name="academic_year" value="{{ old('academic_year') }}"
                                             id="academic_year" class="form-control" placeholder="2020 - 2021" />
                                         @error('academic_year')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3" id="add-completion" style="display: none">
+                                        <label for="completion_date" class="form-label">Completion Date</label>
+                                        <input type="date" name="completion_date" value="{{ old('completion_date') }}"
+                                            id="completion_date" class="form-control" placeholder="Date of Completion" />
+                                        @error('completion_date')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
@@ -224,26 +232,32 @@
                 },
                 scrollX: true,
                 columns: [{
-                        data: null, // Use null data source
+                        data: null,
                         render: function(data, type, row, meta) {
-                            return meta.row + 1;
+
+                            return `<div class="d-flex">
+                                    <img src="${row.profile_image}" alt="" class="avatar-xs rounded-3 me-2">
+                                    <div>
+                                        <h5 class="fs-13 mb-0">${row.name}</h5>
+                                        <p class="fs-12 mb-0 text-muted">${row.email}</p>
+                                    </div>
+                                </div>`;
                         }
                     },
                     {
-                        data: 'name'
-                    },
-                    {
-                        data: 'email'
+                        data: 'reg_number'
                     },
                     {
                         data: 'phone'
                     },
+
                     {
-                        data: null,
-                        render: function(data, type, row, meta) {
-                            return `<span class="${status[row.status].class}">${status[row.status].title}</span>`;
-                        }
+                        data: 'department'
                     },
+                    {
+                        data: 'option'
+                    },
+
                     {
                         data: 'created_at'
                     },
@@ -257,8 +271,8 @@
                                                 data-bs-trigger="hover" data-bs-placement="top" title="Edit">
                                                 <a href="#showModal" data-bs-toggle="modal" data-id="${row.id }"
                                                     data-name="${row.name }" data-email="${row.email }"
-                                                    data-phone="${row.phone }" data-status="${row.status }"
-                                                    data-action="${route }"
+                                                    data-phone="${row.phone }" data-department_id="${row.department_id }"
+                                                    data-option="${row.option }" data-academic_year="${row.academic_year }" data-completion_date="${row.completion_date}" data-action="${route }"
                                                     class="text-primary d-inline-block edit-btn">
                                                     <i class="ri-pencil-fill fs-16"></i>
                                                 </a>
@@ -284,13 +298,15 @@
         $(document).ready(function() {
             $(document).on('click', '#create-btn', function() {
                 document.getElementById("exampleModalLabel").innerHTML = "Add Student";
+                document.getElementById("add-btn").innerHTML = "Add Student";
+                $("#add-completion").hide();
                 var form_action = $(this).data('action');
                 $('.tablelist-form').attr('action', form_action);
             });
 
             // update updateitem modl with clicked button data
             $(document).on('click', '.edit-btn', function() {
-
+                $("#add-completion").show();
                 document.getElementById("exampleModalLabel").innerHTML = "Edit student";
                 document.getElementById("add-btn").innerHTML = "Save Changes";
                 $('.tablelist-form').attr('action', $(this).data('action')).append(
@@ -299,7 +315,10 @@
                 $('#name').val($(this).data('name'));
                 $('#email').val($(this).data('email'));
                 $('#phone').val($(this).data('phone'));
-                $('#status-field').val($(this).data('status'));
+                $('#department_id').val($(this).data('department_id'));
+                $('#academic_year').val($(this).data('academic_year'));
+                $('#option').val($(this).data('option'));
+                $('#completion_date').val($(this).data('completion_date'));
 
             });
 

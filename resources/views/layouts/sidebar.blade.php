@@ -38,41 +38,63 @@
                     </x-nav-link>
 
                 </li> <!-- end Dashboard Menu -->
-                <li class="nav-item">
-                    <x-nav-link class="nav-link menu-link" :href="route('users.index')" :active="request()->routeIs('users.index')">
-                        <i class="ri-user-line"></i> <span data-key="t-users">Users</span>
-                    </x-nav-link>
-                </li>
+                @if (auth()->user()->role == 'admin')
+                    <li class="nav-item">
+                        <x-nav-link class="nav-link menu-link" :href="route('users.index')" :active="request()->routeIs('users.index')">
+                            <i class="ri-user-line"></i> <span data-key="t-users">Users</span>
+                        </x-nav-link>
+                    </li>
 
-                <li class="nav-item">
-                    <x-nav-link class="nav-link menu-link" :href="route('students.index')" :active="request()->routeIs('students.index')">
-                        <i class="ri-user-2-line"></i> <span data-key="t-students">Students</span>
-                    </x-nav-link>
-                </li>
-
-
-                <li class="nav-item">
-
-                    <x-nav-link class="nav-link menu-link" :href="route('products.index')" :active="request()->routeIs('products.index') || request()->routeIs('products.create') || request()->routeIs('products.edit')">
-                        <i class="ri-layout-3-line"></i><span data-key="t-products">Projects</span>
-                    </x-nav-link>
-
-                </li> <!-- end Dashboard Menu -->
-                <li class="nav-item">
-
-                    <x-nav-link class="nav-link menu-link" :href="route('orders.index')" :active="request()->routeIs('orders.index') || request()->routeIs('orders.create') || request()->routeIs('orders.edit') || request()->routeIs('orders.show')">
-                        <i class="ri-apps-2-line"></i><span data-key="t-orders">Requests</span>
-                    </x-nav-link>
-
-                </li> <!-- end Dashboard Menu -->
-                <li class="nav-item">
-
-                    <x-nav-link class="nav-link menu-link" :href="route('departments.index')" :active="request()->routeIs('departments.index')">
-                        <i class="ri-pie-chart-line"></i> <span data-key="t-orders">Departments</span>
-                    </x-nav-link>
+                    <li class="nav-item">
+                        <x-nav-link class="nav-link menu-link" :href="route('students.index')" :active="request()->routeIs('students.index')">
+                            <i class="ri-account-circle-line"></i> <span data-key="t-students">Students</span>
+                        </x-nav-link>
+                    </li>
 
 
-                </li>
+                    <li class="nav-item">
+
+                        <x-nav-link class="nav-link menu-link" :href="route('projects.index')" :active="request()->routeIs('projects.index') || request()->routeIs('projects.show')">
+                            <i class="ri-layout-3-line"></i><span data-key="t-products">Projects</span>
+                        </x-nav-link>
+
+                    </li> <!-- end Dashboard Menu -->
+                    <li class="nav-item">
+
+                        <x-nav-link class="nav-link menu-link">
+                            <i class="ri-apps-2-line"></i><span data-key="t-orders">Requests</span>
+                        </x-nav-link>
+
+                    </li> <!-- end Dashboard Menu -->
+                    <li class="nav-item">
+
+                        <x-nav-link class="nav-link menu-link" :href="route('departments.index')" :active="request()->routeIs('departments.index')">
+                            <i class="ri-pie-chart-line"></i> <span data-key="t-orders">Departments</span>
+                        </x-nav-link>
+
+                    </li>
+                @elseif (auth()->user()->role == 'academic')
+                    <li class="nav-item">
+                        <x-nav-link class="nav-link menu-link" :href="route('students.index')" :active="request()->routeIs('students.index')">
+                            <i class="ri-account-circle-line"></i> <span data-key="t-students">Students</span>
+                        </x-nav-link>
+                    </li>
+                @else
+                    <li class="nav-item">
+
+                        <x-nav-link class="nav-link menu-link" :href="route('projects.index')" :active="request()->routeIs('projects.index') || request()->routeIs('projects.show')">
+                            <i class="ri-layout-3-line"></i><span data-key="t-products">Projects</span>
+                        </x-nav-link>
+
+                    </li> <!-- end Dashboard Menu -->
+                    <li class="nav-item">
+
+                        <x-nav-link class="nav-link menu-link">
+                            <i class="ri-apps-2-line"></i><span data-key="t-orders">Requests</span>
+                        </x-nav-link>
+
+                    </li> <!-- end Dashboard Menu -->
+                @endif
             </ul>
         </div>
         <!-- Sidebar -->

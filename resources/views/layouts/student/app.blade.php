@@ -36,11 +36,11 @@
     <!-- Begin page -->
     <div id="layout-wrapper">
 
-        @include('layouts.navbar')
+        @include('layouts.student.navbar')
 
 
         <!-- ========== App Menu ========== -->
-        @include('layouts.sidebar')
+        @include('layouts.student.sidebar')
 
         <!-- Left Sidebar End -->
         <!-- Vertical Overlay-->
@@ -124,8 +124,8 @@
             });
         });
     </script>
-    
       @include('layouts.toast')
+
     <script src="/assets/js/app.js"></script>
 </body>
 

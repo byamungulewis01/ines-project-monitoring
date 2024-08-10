@@ -31,8 +31,17 @@ class Student extends Authenticatable
         'completion_date',
         'profile_image',
         'whatsapp_number',
+        'call_number',
+        'biography',
     ];
-
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
+    }
+    public function project()
+    {
+        return $this->hasOne(Project::class);
+    }
     /**
      * The attributes that should be hidden for serialization.
      *

@@ -18,7 +18,6 @@ class StudentController extends Controller
         $departments = Department::all();
 
         return view('admin.students', compact('departments'));
-
     }
 
     public function students()
@@ -53,7 +52,7 @@ class StudentController extends Controller
             ],
         ]);
         $studentId = str_pad(Student::max('id') + 1, 5, '0', STR_PAD_LEFT);
-        $request->merge(['reg_number' => now()->year . $studentId]);
+        $request->merge(['reg_number' => date('y') . '/' . $studentId]);
 
         try {
             Student::create($request->all());
@@ -85,7 +84,31 @@ class StudentController extends Controller
      */
     public function update(Request $request, Student $student)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|min:4',
+            'email' => 'required|email|unique:students,email,' . $student->id,
+            'phone' => 'required|unique:students,phone,' . $student->id,
+            'department_id' => 'required',
+            'option' => 'required',
+            'academic_year' => [
+                'required',
+                'regex:/^\d{4} - \d{4}$/',
+            ],
+        ]);
+        if ($request->completion_date) {
+            $request->merge([
+                'completion_date' => $request->completion_date,
+                'student_status' => 'alumni',
+            ]);
+        }
+
+        try {
+            $student->update($request->all());
+            return back()->with('message', 'Student updated succesfully');
+        } catch (\Throwable $th) {
+            //throw $th;
+            return back()->with('error', $th->getMessage());
+        }
     }
 
     /**
