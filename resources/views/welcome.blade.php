@@ -1,36 +1,5 @@
 @extends('layouts.home')
 @section('body')
-    <!-- start hero section -->
-    {{-- <section class="section pb-0 mb-4" id="hero">
-        <div class="bg-overlay bg-overlay-pattern"></div>
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8 col-sm-10">
-                    <div class="text-center mt-lg-5 pt-5">
-                        <h1 class="display-6 fw-semibold mb-3 lh-base">Connecting Sponsors with Future Innovators
-                            <span class="text-success">Innovators </span>
-                        </h1>
-                        <p class="lead text-muted lh-base">Our platform bridges the gap between ambitious students, talented
-                            alumni, and visionary sponsors.</p>
-
-                    </div>
-                </div>
-            </div>
-            <!-- end row -->
-        </div>
-        <!-- end container -->
-        <div class="position-absolute start-0 end-0 bottom-0 hero-shape-svg">
-            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
-                viewBox="0 0 1440 120">
-                <g mask="url(&quot;#SvgjsMask1003&quot;)" fill="none">
-                    <path d="M 0,118 C 288,98.6 1152,40.4 1440,21L1440 140L0 140z">
-                    </path>
-                </g>
-            </svg>
-        </div>
-        <!-- end shape -->
-    </section> --}}
-    <!-- end hero section -->
 
       <!-- start hero section -->
       <section class="section job-hero-section bg-light pb-0" id="hero">
@@ -49,8 +18,7 @@
                             <li class="list-inline-item text-danger fw-semibold"><i class="mdi mdi-tag-multiple-outline align-middle"></i> You can also start as:</li>
                             <li class="list-inline-item"><a target="_blank" href="{{ route('student.login') }}">Student,</a></li>
                             <li class="list-inline-item"><a target="_blank" href="{{ route('student.login') }}">Alumni,</a></li>
-                            <li class="list-inline-item"><a target="_blank" href="{{ route('login') }}">HoD,</a></li>
-                            <li class="list-inline-item"><a target="_blank" href="{{ route('login') }}">Academic</a></li>
+                            <li class="list-inline-item"><a target="_blank" href="{{ route('login') }}">Staff</a></li>
                         </ul>
                     </div>
                 </div>
