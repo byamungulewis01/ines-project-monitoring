@@ -1,7 +1,7 @@
 @extends('layouts.home')
 @section('body')
     <!-- start hero section -->
-    <section class="section pb-0 hero-section" id="hero">
+    {{-- <section class="section pb-0 mb-4" id="hero">
         <div class="bg-overlay bg-overlay-pattern"></div>
         <div class="container">
             <div class="row justify-content-center">
@@ -13,15 +13,7 @@
                         <p class="lead text-muted lh-base">Our platform bridges the gap between ambitious students, talented
                             alumni, and visionary sponsors.</p>
 
-                        <div class="d-flex gap-2 justify-content-center mt-4">
-                            <a href="auth-signup-basic.html" class="btn btn-primary">Get Started <i
-                                    class="ri-arrow-right-line align-middle ms-1"></i></a>
-                            <a href="pages-pricing.html" class="btn btn-danger">View Plans <i
-                                    class="ri-eye-line align-middle ms-1"></i></a>
-                        </div>
                     </div>
-
-
                 </div>
             </div>
             <!-- end row -->
@@ -37,6 +29,47 @@
             </svg>
         </div>
         <!-- end shape -->
+    </section> --}}
+    <!-- end hero section -->
+
+      <!-- start hero section -->
+      <section class="section job-hero-section bg-light pb-0" id="hero">
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-lg-6">
+                    <div>
+                        <h1 class="fw-semibold text-capitalize mb-3 lh-base">Connecting Sponsors with Future Innovators
+                            <span class="text-success">Innovators</h1>
+                        <p class="lead text-muted lh-base mb-4">Our platform bridges the gap between ambitious students, talented
+                            alumni, and visionary sponsors.</p>
+                            <a href="#project" class="btn btn-primary">Get Started <i class="ri-arrow-right-line align-middle ms-1"></i></a>
+
+
+                        <ul class="treding-keywords list-inline mb-0 mt-3 fs-13">
+                            <li class="list-inline-item text-danger fw-semibold"><i class="mdi mdi-tag-multiple-outline align-middle"></i> You can also start as:</li>
+                            <li class="list-inline-item"><a target="_blank" href="{{ route('student.login') }}">Student,</a></li>
+                            <li class="list-inline-item"><a target="_blank" href="{{ route('student.login') }}">Alumni,</a></li>
+                            <li class="list-inline-item"><a target="_blank" href="{{ route('login') }}">HoD,</a></li>
+                            <li class="list-inline-item"><a target="_blank" href="{{ route('login') }}">Academic</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!--end col-->
+                <div class="col-lg-4">
+                    <div class="position-relative home-img text-center mt-lg-0">
+
+                        <div class="circle-effect">
+                            <div class="circle"></div>
+                            <div class="circle2"></div>
+                            <div class="circle3"></div>
+                            <div class="circle4"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container -->
     </section>
     <!-- end hero section -->
 
@@ -68,7 +101,7 @@
                                 <a href="{{ route('projectCategory', $item->id) }}" class="stretched-link">
                                     <h5 class="fs-17 pt-1">{{ $item->name }}</h5>
                                 </a>
-                                <p class="mb-0 text-muted">{{ str_pad(mt_rand(0, 99), 2, '0', STR_PAD_LEFT) }} Projects</p>
+                                <p class="mb-0 text-muted">{{ $item->projects->where('isSponsered', false)->count() }} Projects</p>
                             </div>
                         </div>
                     </div>
@@ -95,7 +128,7 @@
             </div>
             <!-- end row -->
 
-            <div class="row">
+            <div class="row" id="project">
                 @foreach ($projects as $project)
                     <div class="col-lg-6">
                         <div class="card shadow-lg">
@@ -113,7 +146,8 @@
                                             $shortDescription = implode(' ', array_slice($words, 0, 30)); // Get the first 30 words
                                         @endphp
 
-                                        <p class="text-muted">{{ $shortDescription }}{{ count($words) > 30 ? '...' : '' }}</p>
+                                        <p class="text-muted">{{ $shortDescription }}{{ count($words) > 30 ? '...' : '' }}
+                                        </p>
                                         {{-- <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                             Maecenas
                                             rhoncus ligula ut ligula placerat placerat. Quisque at tincidunt ipsum. Donec

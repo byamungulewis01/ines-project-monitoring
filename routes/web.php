@@ -28,7 +28,7 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/show-project/{project}', 'showProject')->name('showProject');
     Route::post('/buy-project/{id}', 'buyProject')->name('buyProject');
     Route::get('/payment-callback', 'paymentCallback')->name('paymentCallback');
-    Route::get('/projects-category/{deparment}', 'category')->name('projectCategory');
+    Route::get('/projects-category/{department}', 'category')->name('projectCategory');
 });
 
 Route::middleware('auth')->group(function () {
@@ -47,6 +47,8 @@ Route::middleware('auth')->group(function () {
 
     Route::controller(\App\Http\Controllers\ProjectController::class)->prefix('projects')->name('projects.')->group(function () {
         Route::get('/', 'index')->name('index');
+        Route::get('/sponsored', 'sponsored')->name('sponsored');
+        Route::get('/sponsored-api', 'sponsoredApi')->name('sponsoredApi');
         Route::get('/{id}', 'show')->name('show');
         Route::put('reaction/{project}', 'reaction')->name('reaction');
     });
@@ -83,3 +85,4 @@ Route::middleware('student')->prefix('student')->name('student.')->group(functio
 
 require __DIR__ . '/auth.php';
 require __DIR__ . '/student-auth.php';
+require __DIR__ . '/sponser-auth.php';

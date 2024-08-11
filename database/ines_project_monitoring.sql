@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 10, 2024 at 08:53 AM
+-- Generation Time: Aug 11, 2024 at 09:33 AM
 -- Server version: 8.0.33
 -- PHP Version: 8.3.9
 
@@ -104,6 +104,13 @@ CREATE TABLE `orders` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `sponser_id`, `project_id`, `created_at`, `updated_at`) VALUES
+(1, 1, 2, '2024-08-11 03:37:49', '2024-08-11 03:37:49');
+
 -- --------------------------------------------------------
 
 --
@@ -153,6 +160,7 @@ CREATE TABLE `projects` (
   `price` bigint DEFAULT NULL,
   `status` enum('pending','approved','rejected') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
   `comment` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `isSponsered` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -161,8 +169,9 @@ CREATE TABLE `projects` (
 -- Dumping data for table `projects`
 --
 
-INSERT INTO `projects` (`id`, `department_id`, `student_id`, `title`, `description`, `proposal_file`, `prototype_file`, `visible`, `price`, `status`, `comment`, `created_at`, `updated_at`) VALUES
-(1, 5, 1, 'Fugiat esse nisi a c', '<h2>What is Lorem Ipsum?</h2><p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>', 'project/fK09j8OC77eRNzT7euVAJhsC0v1GLItkTYQ7lT8d.pdf', 'project/o0ctRluZNfuu3A7yhqgMvfKmQyXDRp1OAMyp1mMo.pdf', 'publish', NULL, 'pending', NULL, '2024-08-10 09:44:49', '2024-08-10 09:44:49');
+INSERT INTO `projects` (`id`, `department_id`, `student_id`, `title`, `description`, `proposal_file`, `prototype_file`, `visible`, `price`, `status`, `comment`, `isSponsered`, `created_at`, `updated_at`) VALUES
+(1, 5, 1, 'Fugiat esse nisi a c', '<h2>What is Lorem Ipsum?</h2><p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>', 'project/fK09j8OC77eRNzT7euVAJhsC0v1GLItkTYQ7lT8d.pdf', 'project/o0ctRluZNfuu3A7yhqgMvfKmQyXDRp1OAMyp1mMo.pdf', 'publish', 100, 'approved', 'Just approve', 0, '2024-08-10 09:44:49', '2024-08-10 13:55:24'),
+(2, 4, 2, 'The standard Lorem Ipsum passage, used since the 1500s', '<p>\"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?\"</p>', 'project/IrnwS8tdQCTCbslMQhEfT0sMZGkXFnfX4Jg1wKF2.pdf', 'project/5mMzsYkEFlaQ8d6lcdhthIZFcEGQZhkIP47DYoda.pdf', 'publish', 200, 'approved', 'just approve', 1, '2024-08-10 12:32:03', '2024-08-11 03:37:49');
 
 -- --------------------------------------------------------
 
@@ -178,6 +187,14 @@ CREATE TABLE `sponsers` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `sponsers`
+--
+
+INSERT INTO `sponsers` (`id`, `name`, `email`, `password`, `created_at`, `updated_at`) VALUES
+(1, 'BYAMUNGU Lewis', 'byamungulewis@gmail.com', '$2y$10$sJ3OXNCKGON6Qu9gNQdI2.nDqBqug/pGDVaHstuBDuxLBhhpua3IO', '2024-08-11 01:25:50', '2024-08-11 01:25:50'),
+(2, 'Gail Schultz', 'laxiwiwi@mailinator.com', '$2y$10$NyAAKw5fyVLeboQ0nlf3bOOMVdrZlumBkVVvDVkrZKM/IZjy95JLK', '2024-08-11 01:45:30', '2024-08-11 01:45:30');
 
 -- --------------------------------------------------------
 
@@ -200,6 +217,8 @@ CREATE TABLE `students` (
   `completion_date` date DEFAULT NULL,
   `profile_image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `whatsapp_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `call_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `biography` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -209,9 +228,11 @@ CREATE TABLE `students` (
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`id`, `name`, `email`, `reg_number`, `phone`, `department_id`, `option`, `password`, `status`, `academic_year`, `student_status`, `completion_date`, `profile_image`, `whatsapp_number`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Avram Huffman', 'wakexuf@mailinator.com', '24/00001', '+1 (471) 601-7758', 5, 'Computer Science', '$2y$10$B0.Ck5qB.zgDnj7nT/wv5OveJ8Sj47KtKmBmCivGImKP0Zcel0P8i', 'active', '2023 - 2024', 'alumni', '2024-08-01', NULL, NULL, NULL, '2024-08-10 09:39:06', '2024-08-10 09:42:28'),
-(2, 'Stacey Odom', 'boviximy@mailinator.com', '24/00002', '+1 (421) 566-6125', 4, 'Ducimus accusamus t', NULL, 'active', '1973 - 2022', 'student', NULL, NULL, NULL, NULL, '2024-08-10 09:39:17', '2024-08-10 09:39:17');
+INSERT INTO `students` (`id`, `name`, `email`, `reg_number`, `phone`, `department_id`, `option`, `password`, `status`, `academic_year`, `student_status`, `completion_date`, `profile_image`, `whatsapp_number`, `call_number`, `biography`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Avram Huffman', 'wakexuf@mailinator.com', '24/00001', '+1 (471) 601-7758', 5, 'Computer Science', '$2y$10$B0.Ck5qB.zgDnj7nT/wv5OveJ8Sj47KtKmBmCivGImKP0Zcel0P8i', 'active', '2023 - 2024', 'alumni', '2024-08-01', NULL, '07886665555', '07886656565', 'Just bio', NULL, '2024-08-10 09:39:06', '2024-08-10 12:26:37'),
+(2, 'Stacey Odom', 'boviximy@mailinator.com', '24/00002', '+1 (421) 566-6125', 4, 'Ducimus accusamus t', '$2y$10$kywGs/avmrZR5ZUzvMhk/eqKnpZXZLWuu0PbBkdVyyxCMQGSJZA4W', 'active', '1973 - 2022', 'alumni', '2024-08-08', 'profile/FlwBIhgkcGAGzLDVVbNrP1sOra6YxfhZlLsnY5S4.png', '0787776633', '0787776633', 'Just bio information', NULL, '2024-08-10 09:39:17', '2024-08-11 07:37:31'),
+(3, 'Oprah Holmes', 'nycuh@mailinator.com', '24/00003', '+1 (398) 632-3372', 5, 'Placeat quo cumque', NULL, 'active', '1973 - 1002', 'student', NULL, NULL, NULL, NULL, NULL, NULL, '2024-08-10 12:30:25', '2024-08-10 12:30:25'),
+(4, 'Hope Boone', 'jenocugo@mailinator.com', '24/00004', '+1 (523) 263-3177', 1, 'Et eveniet ea et ni', '$2y$10$S3k1FZH/VGD88CIKX02W4.rTvo1wuVNEQnr19VdBOH4i.ix7w675y', 'active', '1973 - 1974', 'student', NULL, 'profile/4PfsiBsLKnISLMRUr1JOyUCoQZHoh4OMtJmwTEnS.jpg', '07866637777', '+1 (523) 263-3177', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation u', NULL, '2024-08-11 07:58:26', '2024-08-11 08:21:10');
 
 -- --------------------------------------------------------
 
@@ -238,7 +259,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `phone`, `email_verified_at`, `password`, `status`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'BYAMUNGU Lewis', 'byamungulewis@gmail.com', '0785436135', '2024-08-10 09:25:45', '$2y$10$BR1WnkpIVki9BNViQLlbEePEqTKdwz24nmMnWTQN/.x6YCqNV2iWy', 'active', 'admin', 'kDO3zduNItImX0lhjPV5OOOoVSHhJspkaWew007ziEtkrBZ0cHT2iDyblna2', '2024-08-10 09:25:45', '2024-08-10 09:25:45'),
+(1, 'BYAMUNGU Lewis', 'byamungulewis@gmail.com', '0785436135', '2024-08-10 09:25:45', '$2y$10$BR1WnkpIVki9BNViQLlbEePEqTKdwz24nmMnWTQN/.x6YCqNV2iWy', 'active', 'admin', 'Lo2lsGPBNWhRSJEd7b792Qu6LRcgGdzoJSODpwBKnXsgum0oCSyoTdcr0fsI', '2024-08-10 09:25:45', '2024-08-10 09:25:45'),
 (2, 'vacuwyxyh', 'mucace@mailinator.com', '+1 (102) 611-5236', NULL, '$2y$10$AC8tsmsuWbn07N5KgUmoHuWBWOHNbE5T4ab910NZEkSHz13QPnadC', 'active', 'academic', NULL, '2024-08-10 09:32:33', '2024-08-10 09:32:33'),
 (3, 'symyd na', 'wadan@mailinator.com', '+1 (145) 798-1243', NULL, '$2y$10$S7/ILEY0L.dkCCMZwhkjMeFgU0j4La.CpPDAC.eteO3MmUAsrxr4W', 'active', 'hod', NULL, '2024-08-10 09:35:57', '2024-08-10 09:35:57');
 
@@ -346,7 +367,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -358,19 +379,19 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `sponsers`
 --
 ALTER TABLE `sponsers`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Department;
+use App\Models\Order;
 use App\Models\Project;
 use EdwardMuss\Rave\Facades\Rave as Flutterwave;
 use Illuminate\Http\Request;
@@ -13,7 +14,7 @@ class HomeController extends Controller
     public function index()
     {
         $departments = Department::all();
-        $projects = Project::where('visible', 'publish')->where('status', 'approved')->get();
+        $projects = Project::where('visible', 'publish')->where('status', 'approved')->where('isSponsered', false)->get();
         return view('welcome', compact('departments', 'projects'));
     }
 
@@ -22,10 +23,12 @@ class HomeController extends Controller
 
         return view('show-project', compact('project'));
     }
-    public function category()
+    public function category(Department $department)
     {
         // dd('here');
-        return view('category-project');
+        $projects = Project::where('department_id', $department->id)->where('visible', 'publish')->where('status', 'approved')->where('isSponsered', false)->get();
+
+        return view('category-project', compact('projects', 'department'));
     }
     public function buyProject($id)
     {
@@ -38,15 +41,19 @@ class HomeController extends Controller
         $data = [
             'payment_options' => 'card,banktransfer',
             'amount' => $project->price,
-            'email' => 'byamungulewis@gmail.com',
+            'email' => auth()->guard('sponser')->user()->email,
             'tx_ref' => $reference,
             'currency' => "RWF",
             'type' => "mobile_money_rwanda",
             'redirect_url' => route('paymentCallback'),
             'customer' => [
-                'email' => 'byamungulewis@gmail.com',
-                "phone_number" => '0785436135',
-                "name" => 'BYAMUNGU Lewis'
+                'email' => auth()->guard('sponser')->user()->email,
+                "phone_number" => '',
+                "name" => auth()->guard('sponser')->user()->name,
+            ],
+            'meta' => [
+                "sponser_id" => auth()->guard('sponser')->id(),
+                "project_id" => $project->id,
             ],
 
             "customizations" => [
@@ -72,18 +79,22 @@ class HomeController extends Controller
         //if payment is successful
         if ($status ==  'successful') {
 
-        $transactionID = Flutterwave::getTransactionIDFromCallback();
-        $data = Flutterwave::verifyTransaction($transactionID);
+            $transactionID = Flutterwave::getTransactionIDFromCallback();
+            $data = Flutterwave::verifyTransaction($transactionID);
 
-        dd($data);
-        }
-        elseif ($status ==  'cancelled'){
+            $info = $data['data']['meta'];
+
+            Order::create([
+                'sponser_id' => $info['sponser_id'],
+                'project_id' => $info['project_id'],
+            ]);
+            Project::find($info['project_id'])->update(['isSponsered' => true]);
+        } elseif ($status ==  'cancelled') {
             //Put desired action/code after transaction has been cancelled here
-        }
-        else{
+        } else {
             //Put desired action/code after transaction has failed here
         }
-    
-        return view('payment-callback');
+
+        return to_route('sponser.showProject', $data['data']['meta']['project_id']);
     }
 }

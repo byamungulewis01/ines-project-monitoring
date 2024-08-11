@@ -19,6 +19,7 @@ class Project extends Model
         'price',
         'status',
         'comment',
+        'isSponsered',
     ];
     public function department()
     {

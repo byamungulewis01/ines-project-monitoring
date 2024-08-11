@@ -22,8 +22,11 @@
                             <ul class="list-inline fs-bold mb-3">
                                 <span class="badge bg-success-subtle text-success me-2">{{ number_format($project->price) }}
                                     Rwf</span>
-
-                                <button type="submit" class="btn btn-danger btn-sm"> Get it now</button>
+                                @if (auth()->guard('sponser')->check())
+                                    <button type="submit" class="btn btn-danger btn-sm"> Get it now</button>
+                                @else
+                                    <button type="button" data-bs-toggle="modal" data-bs-target="#loginModals" class="btn btn-danger btn-sm"> Get it now</button>
+                                @endif
 
                             </ul>
 

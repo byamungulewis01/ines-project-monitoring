@@ -5,7 +5,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-7">
                     <div class="text-center mb-5">
-                        <h1 class="mb-3 ff-secondary fw-semibold text-capitalize lh-base">{{ $department->name }}</h1>
+                        <h1 class="mb-3 ff-secondary fw-semibold text-capitalize lh-base">List of Sponsered Project</h1>
 
                     </div>
                 </div>
@@ -13,7 +13,7 @@
             </div>
             <!-- end row -->
 
-            <div class="row">
+            <div class="row" id="project">
                 @foreach ($projects as $project)
                     <div class="col-lg-6">
                         <div class="card shadow-lg">
@@ -33,7 +33,11 @@
 
                                         <p class="text-muted">{{ $shortDescription }}{{ count($words) > 30 ? '...' : '' }}
                                         </p>
-
+                                        {{-- <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                            Maecenas
+                                            rhoncus ligula ut ligula placerat placerat. Quisque at tincidunt ipsum. Donec
+                                            eros
+                                            lacus ... </p> --}}
                                         <ul class="list-inline fs-bold mb-3">
                                             <li class="list-inline-item">
                                                 <i class="ri-user-line align-bottom me-1"></i> {{ $project->student->name }}
@@ -43,10 +47,10 @@
                                             </li>
 
                                         </ul>
-                                        <div class="hstack gap-2">
-                                            <span class="badge bg-success-subtle text-success">{{ $project->price }}
-                                                Rwf</span>
 
+                                        <div>
+                                            <a href="{{ route('sponser.showProject', $project->id) }}" class="link-primary">More
+                                                Details<i class="ri-arrow-right-line align-bottom ms-1"></i></a>
                                         </div>
                                     </div>
 
@@ -55,6 +59,8 @@
                         </div>
                     </div>
                 @endforeach
+
+
             </div>
         </div>
     </section>

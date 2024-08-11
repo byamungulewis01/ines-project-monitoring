@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\SponsorResource;
+use App\Models\Order;
 use App\Models\Project;
 use App\Models\Student;
 use Illuminate\Http\Request;
@@ -13,6 +15,14 @@ class ProjectController extends Controller
     {
         $students = Student::where('student_status', 'alumni')->get();
         return view('admin.alumnin.index', compact('students'));
+    }
+    public function sponsored()
+    {
+        return view('admin.sponsoredProjects');
+    }
+    public function sponsoredApi()
+    {
+        return SponsorResource::collection(Order::orderByDesc('id')->get());
     }
     public function show($id)
     {

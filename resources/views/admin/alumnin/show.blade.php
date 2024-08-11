@@ -94,7 +94,8 @@
             <!--end card-->
         </div>
         <!--end col-->
-        @if ($student->project)
+
+        @if ($student->project && $student->project->visible == 'publish')
             <div class="col-md-8">
                 <div class="card mt-xxl-n5">
                     <div class="card-body">
@@ -158,8 +159,8 @@
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="price" class="form-label">Project Price</label>
-                                            <input type="number" min="0" class="form-control" name="price"
-                                                id="price" placeholder="Enter project value"
+                                            <input type="number" min="0" class="form-control"
+                                                name="price" id="price" placeholder="Enter project value"
                                                 value="{{ old('price', $student->project->price) }}">
                                             @error('price')
                                                 <span class="text-danger">{{ $message }}</span>
@@ -173,19 +174,21 @@
                                     <div class="col-lg-12">
                                         <div class="mb-3 pb-2">
                                             <label for="comment" class="form-label">Comment</label>
-                                            <textarea class="form-control" rows="4" name="comment" id="comment" placeholder="Please provide comment"
-                                                rows="3">{{ old('comment', $student->project->comment) }}</textarea>
+                                            <textarea  class="form-control" rows="4" name="comment" id="comment"
+                                                placeholder="Please provide comment" rows="3">{{ old('comment', $student->project->comment) }}</textarea>
                                             @error('comment')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </div>
                                     <!--end col-->
-                                    <div class="col-lg-12">
-                                        <div class="hstack gap-2 justify-content-end">
-                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                    @unless ($student->project->status == 'approved')
+                                        <div class="col-lg-12">
+                                            <div class="hstack gap-2 justify-content-end">
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                            </div>
                                         </div>
-                                    </div>
+                                    @endunless
                                     <!--end col-->
                                 </div>
                             </form>

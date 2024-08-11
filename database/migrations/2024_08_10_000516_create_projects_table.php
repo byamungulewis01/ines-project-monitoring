@@ -23,6 +23,7 @@ return new class extends Migration
             $table->bigInteger('price')->nullable();
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->string('comment')->nullable();
+            $table->boolean('isSponsered')->default(false);
             $table->timestamps();
         });
     }

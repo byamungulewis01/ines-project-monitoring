@@ -44,6 +44,10 @@ return [
             'driver' => 'session',
             'provider' => 'students',
         ],
+        'sponser' => [
+            'driver' => 'session',
+            'provider' => 'sponsers',
+        ],
     ],
 
     /*
@@ -71,6 +75,10 @@ return [
         'students' => [
             'driver' => 'eloquent',
             'model' => App\Models\Student::class,
+        ],
+        'sponsers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Sponser::class,
         ],
 
         // 'users' => [
@@ -106,6 +114,12 @@ return [
             'throttle' => 60,
         ],
         'students' => [
+            'provider' => 'students',
+            'table' => 'password_reset_tokens',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'sponsers' => [
             'provider' => 'students',
             'table' => 'password_reset_tokens',
             'expire' => 60,

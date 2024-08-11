@@ -4,7 +4,7 @@
             <div class="d-flex">
                 <!-- LOGO -->
                 <div class="navbar-brand-box horizontal-logo">
-                    <a href="index.html" class="logo logo-dark">
+                    <a href="{{ route('student.dashboard') }}" class="logo logo-dark">
                         <span class="logo-sm">
                             <img src="{{ asset('images/logo-ines-ruhengeri.png') }}" alt="" height="30">
                         </span>
@@ -13,7 +13,7 @@
                         </span>
                     </a>
 
-                    <a href="index.html" class="logo logo-light">
+                    <a href="{{ route('student.dashboard') }}" class="logo logo-light">
                         <span class="logo-sm">
                             <img src="{{ asset('images/logo-ines-ruhengeri.png') }}" alt="" height="30">
                         </span>
@@ -88,7 +88,7 @@
                     </button>
                     <div class="dropdown-menu dropdown-menu-end">
                         <!-- item-->
-                        <h6 class="dropdown-header">Welcome Anna!</h6>
+                        <h6 class="dropdown-header">Welcome</h6>
                         <a class="dropdown-item" href="{{ route('student.profile.edit') }}"><i
                                 class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span
                                 class="align-middle">Profile</span></a>

@@ -2,7 +2,7 @@
     <!-- LOGO -->
     <div class="navbar-brand-box">
         <!-- Dark Logo-->
-        <a href="index.html" class="logo logo-dark">
+        <a href="{{ route('dashboard') }}" class="logo logo-dark">
             <span class="logo-sm">
                 <img src="/image/logo-sm.png" alt="" height="22">
             </span>
@@ -11,7 +11,7 @@
             </span>
         </a>
         <!-- Light Logo-->
-        <a href="index.html" class="logo logo-light">
+        <a href="{{ route('dashboard') }}" class="logo logo-light">
             <span class="logo-sm">
                 <img src="/images/logo-sm.png" alt="" height="22">
             </span>
@@ -61,8 +61,8 @@
                     </li> <!-- end Dashboard Menu -->
                     <li class="nav-item">
 
-                        <x-nav-link class="nav-link menu-link">
-                            <i class="ri-apps-2-line"></i><span data-key="t-orders">Requests</span>
+                        <x-nav-link class="nav-link menu-link" :href="route('projects.sponsored')" :active="request()->routeIs('projects.sponsored')">
+                            <i class="ri-apps-2-line"></i><span data-key="t-sponsored">Sponsored Projects</span>
                         </x-nav-link>
 
                     </li> <!-- end Dashboard Menu -->
@@ -89,8 +89,8 @@
                     </li> <!-- end Dashboard Menu -->
                     <li class="nav-item">
 
-                        <x-nav-link class="nav-link menu-link">
-                            <i class="ri-apps-2-line"></i><span data-key="t-orders">Requests</span>
+                        <x-nav-link class="nav-link menu-link" :href="route('projects.sponsored')" :active="request()->routeIs('projects.sponsored')">
+                            <i class="ri-apps-2-line"></i><span data-key="t-sponsored">Sponsored Projects</span>
                         </x-nav-link>
 
                     </li> <!-- end Dashboard Menu -->
