@@ -234,12 +234,13 @@
                 columns: [{
                         data: null,
                         render: function(data, type, row, meta) {
+                            const publicPath = "{{ env('ASSET_URL') }}";
 
                             return `<div class="d-flex">
-                                    <img src="${row.profile_image}" alt="" class="avatar-xs rounded-3 me-2">
+                                    <img src="${publicPath}/${row.profile_image}" alt="" class="avatar-xs rounded-3 me-2">
                                     <div>
                                         <h5 class="fs-13 mb-0">${row.name}</h5>
-                                        <p class="fs-12 mb-0 text-muted">${row.email}</p>
+                                        <p class="fs-12 mb-0 text-muted">${row.email} </p>
                                     </div>
                                 </div>`;
                         }

@@ -4,19 +4,19 @@
         <!-- Dark Logo-->
         <a href="{{ route('student.dashboard') }}" class="logo logo-dark">
             <span class="logo-sm">
-                <img src="/image/logo-sm.png" alt="" height="22">
+                <img src="{{ asset('image/logo-sm.png') }}" alt="" height="22">
             </span>
             <span class="logo-lg">
-                <img src="/images/logo-sm.png" alt="" height="17">
+                <img src="{{ asset('images/logo-sm.png') }}" alt="" height="17">
             </span>
         </a>
         <!-- Light Logo-->
         <a href="{{ route('student.dashboard') }}" class="logo logo-light">
             <span class="logo-sm">
-                <img src="/images/logo-sm.png" alt="" height="22">
+                <img src="{{ asset('images/logo-sm.png') }}" alt="" height="22">
             </span>
             <span class="logo-lg">
-                <img src="/images/logo-sm.png" alt="" height="17">
+                <img src="{{ asset('images/logo-sm.png') }}" alt="" height="17">
             </span>
         </a>
         <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover"

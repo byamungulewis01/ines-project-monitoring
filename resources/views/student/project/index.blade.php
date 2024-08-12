@@ -116,10 +116,9 @@
                                         <td class="fw-medium">Visible</td>
                                         <td>
                                             @if ($project->visible == 'draft')
-                                                <span class="badge bg-success-subtle text-success">Published</span>
+                                            <span class="badge bg-warning-subtle text-warning">Draft</span>
                                             @else
-                                                <span class="badge bg-warning-subtle text-warning">Draft</span>
-
+                                            <span class="badge bg-success-subtle text-success">Published</span>
                                             @endif
                                         </td>
                                     </tr>

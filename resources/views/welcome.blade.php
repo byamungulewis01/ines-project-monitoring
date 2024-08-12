@@ -23,17 +23,7 @@
                     </div>
                 </div>
                 <!--end col-->
-                <div class="col-lg-4">
-                    <div class="position-relative home-img text-center mt-lg-0">
-
-                        <div class="circle-effect">
-                            <div class="circle"></div>
-                            <div class="circle2"></div>
-                            <div class="circle3"></div>
-                            <div class="circle4"></div>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
             <!-- end row -->
         </div>

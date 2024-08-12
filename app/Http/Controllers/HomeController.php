@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Department;
+use Log;
 use App\Models\Order;
 use App\Models\Project;
-use EdwardMuss\Rave\Facades\Rave as Flutterwave;
+use App\Models\Department;
 use Illuminate\Http\Request;
+use EdwardMuss\Rave\Facades\Rave as Flutterwave;
 
 class HomeController extends Controller
 {
@@ -30,14 +31,11 @@ class HomeController extends Controller
 
         return view('category-project', compact('projects', 'department'));
     }
+
     public function buyProject($id)
     {
         $project = Project::find($id);
-
-        //This generates a payment reference
         $reference = Flutterwave::generateReference();
-
-        // Enter the details of the payment
         $data = [
             'payment_options' => 'card,banktransfer',
             'amount' => $project->price,
@@ -57,8 +55,8 @@ class HomeController extends Controller
             ],
 
             "customizations" => [
-                "title" => "Sponsering Student project",
-                "description" => "Sponsering student project"
+                "title" => "Sponsoring Student project",
+                "description" => "Sponsoring student project"
             ]
         ];
 

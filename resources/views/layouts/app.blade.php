@@ -14,20 +14,20 @@
     <meta content="Project Monitaring" name="description" />
     <meta content="BmgCodes" name="author" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="/images/logo-sm.png">
+    <link rel="shortcut icon" href="{{ asset('images/logo-sm.png') }}">
     @yield('css')
     <!-- Layout config Js -->
-    <script src="/assets/js/layout.js"></script>
+    <script src="{{ asset('assets/js/layout.js') }}"></script>
     <!-- Bootstrap Css -->
-    <link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
-    <link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- App Css-->
-    <link href="/assets/css/app.min.css" rel="stylesheet" type="text/css" />
-    <link href="/assets/toast/css/jquery.toast.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/toast/css/jquery.toast.css') }}" rel="stylesheet" type="text/css" />
 
     <!-- custom Css-->
-    <link href="/assets/css/custom.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/custom.min.css') }}" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -99,15 +99,15 @@
     </div>
 
     <!-- JAVASCRIPT -->
-    <script src="/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="/assets/libs/simplebar/simplebar.min.js"></script>
-    <script src="/assets/libs/node-waves/waves.min.js"></script>
-    <script src="/assets/libs/feather-icons/feather.min.js"></script>
-    <script src="/assets/js/pages/plugins/lord-icon-2.1.0.js"></script>
+    <script src="{{ asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/node-waves/waves.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/feather-icons/feather.min.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/plugins/lord-icon-2.1.0.js') }}"></script>
 
     <script src="{{ asset('assets/toast/jquery.js') }}"></script>
     <script src="{{ asset('assets/toast/js/jquery.toast.js') }}"></script>
-    {{-- <script src="/assets/js/plugins.js"></script> --}}
+    {{-- <script src="{{ asset('assets/js/plugins.js') }}"></script> --}}
     @yield('js')
     <!-- App js -->
     <script>
@@ -124,9 +124,9 @@
             });
         });
     </script>
-    
+
       @include('layouts.toast')
-    <script src="/assets/js/app.js"></script>
+    <script src="{{ asset('assets/js/app.js') }}"></script>
 </body>
 
 

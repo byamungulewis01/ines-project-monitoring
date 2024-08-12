@@ -87,8 +87,8 @@
                     {
                         data: null,
                         render: function(data, type, row, meta) {
-
-                            return `<img src="/${row.profile_image}" alt=""
+                            const publicPath = "{{ env('ASSET_URL') }}";
+                            return `<img src="${publicPath}/${row.profile_image}" alt=""
                                                 class="avatar-xs rounded-circle me-2">
                                             <a href="#javascript: void(0);" class="text-body fw-medium">${row.student_name}</a>`;
                         }

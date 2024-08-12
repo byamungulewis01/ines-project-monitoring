@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="row project-wrapper">
-        <div class="col-xxl-8">
+        <div class="col-xxl-12">
             <div class="row">
                 <div class="col-xl-4">
                     <div class="card card-animate">
@@ -39,10 +39,9 @@
                                     <div class="d-flex align-items-center mb-3">
                                         <h4 class="fs-4 flex-grow-1 mb-0"><span class="counter-value"
                                                 data-target="{{ $project->active }}">{{ $project->active }}</span></h4>
-                                        <span class="badge bg-danger-subtle text-danger fs-12"><i
-                                                class="ri-arrow-down-s-line fs-13 align-middle me-1"></i>5.02 %</span>
+
                                     </div>
-                                    <p class="text-muted text-truncate mb-0">Projects this month</p>
+                                    {{-- <p class="text-muted text-truncate mb-0">Projects this month</p> --}}
                                 </div>
                             </div>
                         </div><!-- end card body -->
@@ -69,10 +68,8 @@
                                     <div class="d-flex align-items-center mb-3">
                                         <h4 class="fs-4 flex-grow-1 mb-0"><span class="counter-value"
                                                 data-target="{{ $project->pending }}">{{ $project->pending }}</span> </h4>
-                                        <span class="badge bg-danger-subtle text-danger fs-12"><i
-                                                class="ri-arrow-down-s-line fs-13 align-middle me-1"></i>10.35 %</span>
+
                                     </div>
-                                    <p class="text-muted text-truncate mb-0">Work this month</p>
                                 </div>
                             </div>
                         </div><!-- end card body -->
@@ -99,10 +96,8 @@
                                     <div class="d-flex align-items-center mb-3">
                                         <h4 class="fs-4 flex-grow-1 mb-0"><span class="counter-value"
                                                 data-target="{{ $project->sponsored }}">{{ $project->sponsored }}</span></h4>
-                                        <span class="badge bg-success-subtle text-success fs-12"><i
-                                                class="ri-arrow-up-s-line fs-13 align-middle me-1"></i>3.58 %</span>
+
                                     </div>
-                                    <p class="text-muted mb-0">Leads this month</p>
                                 </div>
                             </div>
                         </div><!-- end card body -->
@@ -168,8 +163,7 @@
                             <div class="d-flex justify-content-between">
                                 <div>
                                     <p class="fw-medium text-muted mb-0">Users</p>
-                                    <h2 class="mt-4 ff-secondary fw-semibold"><span class="counter-value" data-target="{{ $users->local }}">{{ $users->local }}</span></h2>
-                                    <p class="mb-0 text-muted"><span class="badge bg-light text-success mb-0"> <i class="ri-arrow-up-line align-middle"></i> 16.24 % </span> vs. previous month</p>
+                                    <h4 class="mt-2 ff-secondary fw-semibold"><span class="counter-value" data-target="{{ $users->local }}">{{ $users->local }}</span></h4>
                                 </div>
                                 <div>
                                     <div class="avatar-sm flex-shrink-0">
@@ -188,8 +182,7 @@
                             <div class="d-flex justify-content-between">
                                 <div>
                                     <p class="fw-medium text-muted mb-0">Students</p>
-                                    <h4 class="mt-4 ff-secondary fw-semibold"><span class="counter-value" data-target="{{ $users->student }}">{{ $users->student }}</span></h4>
-                                    <p class="mb-0 text-muted"><span class="badge bg-primary text-warning mb-0"> <i class="ri-arrow-up-line align-middle"></i> 30.24 % </span> vs. previous month</p>
+                                    <h4 class="mt-1 ff-secondary fw-semibold"><span class="counter-value" data-target="{{ $users->student }}">{{ $users->student }}</span></h4>
                                 </div>
                                 <div>
                                     <div class="avatar-sm flex-shrink-0">
@@ -208,8 +201,7 @@
                             <div class="d-flex justify-content-between">
                                 <div>
                                     <p class="fw-medium text-muted mb-0">Alumnies</p>
-                                    <h4 class="mt-4 ff-secondary fw-semibold"><span class="counter-value" data-target="{{ $users->alumni }}">{{ $users->alumni }}</span></h4>
-                                    <p class="mb-0 text-muted"><span class="badge bg-light text-success mb-0"> <i class="ri-arrow-up-line align-middle"></i> 10.3 % </span> vs. previous month</p>
+                                    <h4 class="mt-1 ff-secondary fw-semibold"><span class="counter-value" data-target="{{ $users->alumni }}">{{ $users->alumni }}</span></h4>
                                 </div>
                                 <div>
                                     <div class="avatar-sm flex-shrink-0">
@@ -228,8 +220,7 @@
                             <div class="d-flex justify-content-between">
                                 <div>
                                     <p class="fw-medium text-muted mb-0">Sponsers</p>
-                                    <h4 class="mt-4 ff-secondary fw-semibold"><span class="counter-value" data-target="{{ $users->sponsor }}">{{ $users->sponsor }}</span></h4>
-                                    <p class="mb-0 text-muted"><span class="badge bg-danger text-white mb-0"> <i class="ri-arrow-down-line align-middle"></i> 1.24 % </span> vs. previous month</p>
+                                    <h4 class="mt-1 ff-secondary fw-semibold"><span class="counter-value" data-target="{{ $users->sponsor }}">{{ $users->sponsor }}</span></h4>
                                 </div>
                                 <div>
                                     <div class="avatar-sm flex-shrink-0">

@@ -1,1 +1,1 @@
-<link rel="stylesheet" href="/assets/datatable/css/buttons.dataTables.min.css">
+<link rel="stylesheet" href="{{ asset('assets/datatable/css/buttons.dataTables.min.css') }}">
